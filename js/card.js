@@ -19,7 +19,7 @@ async function carregarDados() {
     container.innerHTML = "";
 
     dados.forEach(item => {
-     const caminhoCapa = item["Capa"] ? `assets/capas/${item["Capa"].replace(/\s/g, '%20')}` : "testes/img/default.jpg";
+     const caminhoCapa = item["Capa"] ? `https://raw.githubusercontent.com/CetecJacobina/biblioteca/refs/heads/main/assets/capas/${item["Capa"].replace(/\s/g, '%20')}` : "testes/img/default.jpg";
 
       console.log("Caminho da capa:", caminhoCapa); // Debug
 
