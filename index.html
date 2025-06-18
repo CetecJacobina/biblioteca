@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Acervo Biblioteca Virtual</title>
+    <link rel="stylesheet" href="../css/estilo.css">
+</head>
+
+<body>
+    <header>📚 Biblioteca Virtual CETEC</header>
+    
+
+    <main>
+        <section id="filtros">
+            <select id="categoriaFiltro">
+            <option value="">Todas as categorias</option>
+            <!-- categorias preenchidas dinamicamente via JS -->
+        </select>
+        <input type="text" id="campoBusca" placeholder="🔍 Buscar por título, autor ou categoria">
+        
+    </section>
+        <div class="grid-container" id="acervo">Carregando...</div>
+        <div id="pagination-controls"></div>
+    </main>
+
+    <footer>
+
+        <p>Desenvolvido por Cetec</p>
+    </footer>
+
+    <script src="js/card.js"></script>
+    <script src="js/paginacao.js"></script>
+    <script src="js/filtro.js"></script>
+
+
+</body>
+
+</html>

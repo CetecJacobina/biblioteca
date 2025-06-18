@@ -1,0 +1,204 @@
+ body {
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 0;
+   background-color: #f3fbff;
+
+ }
+ main{
+     background-color: #ffffff;
+     max-width: 1000px;
+     margin: auto;
+     min-height: 85vh;
+
+ }
+
+ header {
+   background-color: #003366;
+   color: white;
+   padding: 20px;
+   text-align: center;
+   font-size: 24px;
+   height: 50px;
+ }
+
+
+ .container {
+   display: flex;
+   padding: 20px;
+   max-width: 1000px;
+   margin: auto;
+
+ }
+
+ .menu {
+   width: 130px;
+ }
+
+ .menu ul {
+   list-style-type: none;
+   padding: 0;
+ }
+
+ .menu li {
+   background-color: #f0f0f0;
+   padding: 10px;
+   margin-bottom: 10px;
+   cursor: pointer;
+   border-radius: 5px;
+ }
+
+ .menu li:hover {
+   background-color: #dcdcdc;
+ }
+
+ .busca {
+   flex-grow: 1;
+   padding-left: 40px;
+   display: block;
+ }
+
+ .busca input[type="text"] {
+   width: 80%;
+   padding: 10px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+ }
+
+/* 🎯 Área de filtros */
+#filtros {
+  max-width: 1000px;
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+/* 🔍 Campo de busca */
+#campoBusca {
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+#campoBusca:focus {
+  border-color: #003366;
+  outline: none;
+}
+
+/* 📂 Filtro de categoria */
+#categoriaFiltro {
+  margin-left: 5%;
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  transition: border-color 0.3s;
+}
+
+#categoriaFiltro:focus {
+  border-color: #003366;
+  outline: none;
+}
+
+
+ /* 📌 Botões de paginação */
+#pagination-controls {
+  margin-top: 20px;
+}
+
+#pagination-controls button {
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: #003366;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#pagination-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+ .grid-container {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 20px;
+   max-width: 1000px;
+   padding: 60px;
+   
+
+ }
+
+ .icone-livro {
+   background: #fbfdff;
+   border-radius: 8px;
+   padding: 10px;
+   text-align: center;
+   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+   position: relative;
+ }
+
+ .capa-livro {
+   width: 100%;
+   height: auto;
+   cursor: pointer;
+   border-radius: 4px;
+ }
+
+ .info-livro h3 {
+   font-size: 16px;
+   margin: 10px 0 4px;
+ }
+
+ .info-livro p {
+   margin: 0;
+   font-size: 14px;
+   color: #333;
+ }
+
+ .descricao-btn {
+   margin-top: 8px;
+   padding: 6px 10px;
+   font-size: 13px;
+   background-color: #003366;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+ }
+
+ .descricao-popup {
+   display: none;
+   position: absolute;
+   top: 10px;
+   left: 10px;
+   right: 10px;
+   padding: 10px;
+   background: #fff;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   z-index: 10;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+ }
+
+ footer{
+  color: #fff;
+  background-color: black;
+  height: 50px;
+  text-align: center;
+  padding: 10px;
+
+ }
+ 
