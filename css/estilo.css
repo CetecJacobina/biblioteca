@@ -244,6 +244,15 @@
     top: 20%;
     max-width: 90%;
   }
+  .descricao-btn {
+
+   font-size: 3em;
+   
+ }
+ div.info-livro  h3, div.info-livro  p{
+  font-size: 2em;
+ }
+
 }
 
 /* 📱📱 Tablet (entre 601px e 1000px) */
@@ -265,4 +274,19 @@
   #categoriaFiltro {
     width: 45%;
   }
+  .descricao-btn {
+
+   font-size: 2em;
+   
+ }
+ 
+ .descricao-btn {
+
+   font-size: 2em;
+   
+ }
+ div.info-livro  h3, div.info-livro  p{
+  font-size: 2em;
+ }
+
 }
