@@ -19,10 +19,14 @@ async function carregarDados() {
     container.innerHTML = "";
 
     dados.forEach(item => {
+<<<<<<< HEAD
       const nomeImagem = item["Capa"];
       const caminhoCapa = nomeImagem
         ? `https://raw.githubusercontent.com/CetecJacobina/biblioteca/refs/heads/main/assets/capas/${encodeURIComponent(nomeImagem)}`
         : "https://raw.githubusercontent.com/CetecJacobina/biblioteca/refs/heads/main/assets/capas/default.jpg";
+=======
+     const caminhoCapa = item["Capa"] ? `https://raw.githubusercontent.com/CetecJacobina/biblioteca/refs/heads/main/assets/capas/${item["Capa"].replace(/\s/g, '%20')}` : "testes/img/default.jpg";
+>>>>>>> 0393272da638d9281b162610c4430a50ec373f68
 
       console.log("Caminho da capa:", caminhoCapa); // Debug
 
