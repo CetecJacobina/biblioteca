@@ -19,9 +19,14 @@ async function carregarDados() {
     container.innerHTML = "";
 
     dados.forEach(item => {
-     const caminhoCapa = item["Capa"] ? `assets/capas/${item["Capa"].replace(/\s/g, '%20')}` : "testes/img/default.jpg";
+      const nomeImagem = item["Capa"];
+      const caminhoCapa = nomeImagem
+        ? `https://raw.githubusercontent.com/CetecJacobina/biblioteca/refs/heads/main/assets/capas/${encodeURIComponent(nomeImagem)}`
+        : "https://raw.githubusercontent.com/CetecJacobina/biblioteca/refs/heads/main/assets/capas/default.jpg";
 
       console.log("Caminho da capa:", caminhoCapa); // Debug
+
+      const idDescricao = `descricao-${item["Título"].replace(/\s/g, '-')}`;
 
       const div = document.createElement("div");
       div.className = "icone-livro";
@@ -32,11 +37,11 @@ async function carregarDados() {
           <div class="info-livro">
             <h3>${item["Título"]}</h3>
             <p><strong>Autor:</strong> ${item["Autor"]}</p>
-            <button class="descricao-btn" onclick="mostrarDescricao('${item["Título"].replace(/\s/g, '-')}')">Ver Descrição</button>
+            <button class="descricao-btn" onclick="mostrarDescricao('${idDescricao}')">Ver Descrição</button>
           </div>
-          <div class="descricao-popup" id="descricao-${item["Título"].replace(/\s/g, '-')}">
-            <p>${item["Descrição"]}</p>
-            <button onclick="fecharDescricao('${item["Título"].replace(/\s/g, '-')}')">Fechar</button>
+          <div class="descricao-popup" id="${idDescricao}">
+            <p>${item["Descrição"] || "Descrição não disponível."}</p>
+            <button onclick="fecharDescricao('${idDescricao}')">Fechar</button>
           </div>
         </div>
       `;
@@ -50,12 +55,12 @@ async function carregarDados() {
 }
 
 function mostrarDescricao(id) {
-  const popup = document.getElementById(`descricao-${id.replace(/\s/g, '-')}`);
+  const popup = document.getElementById(id);
   if (popup) popup.style.display = "block";
 }
 
 function fecharDescricao(id) {
-  const popup = document.getElementById(`descricao-${id.replace(/\s/g, '-')}`);
+  const popup = document.getElementById(id);
   if (popup) popup.style.display = "none";
 }
 
