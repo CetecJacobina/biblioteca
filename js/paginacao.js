@@ -36,8 +36,9 @@ function exibirPagina(pagina, fonte = dados) {
   const itensPagina = fonte.slice(inicio, fim);
 
   itensPagina.forEach(item => {
-    const caminhoCapa = item["Capa"] ? `../assets/capas/${item["Capa"].replace(/\s/g, '%20')}` : "../assets/capas/default.jpg";
-
+    const caminhoCapa = item["Capa"]
+  ? `https://raw.githubusercontent.com/CetecJacobina/biblioteca/refs/heads/main/assets/capas/${encodeURIComponent(item["Capa"])}`
+  : `https://raw.githubusercontent.com/CetecJacobina/biblioteca/refs/heads/main/assets/capas/default.jpg`;
     const div = document.createElement("div");
     div.className = "icone-livro";
 
