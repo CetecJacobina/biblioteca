@@ -1,6 +1,33 @@
 // dados.js
 window.dados = [];
 
+function parseCsvLinhaComAspas(linha) {
+  const resultado = [];
+  let campo = '';
+  let dentroDeAspas = false;
+
+  for (let i = 0; i < linha.length; i++) {
+    const char = linha[i];
+    const proximo = linha[i + 1];
+
+    if (char === '"' && dentroDeAspas && proximo === '"') {
+      campo += '"'; // Aspas escapada ("")
+      i++;
+    } else if (char === '"') {
+      dentroDeAspas = !dentroDeAspas;
+    } else if (char === ',' && !dentroDeAspas) {
+      resultado.push(campo.trim());
+      campo = '';
+    } else {
+      campo += char;
+    }
+  }
+  resultado.push(campo.trim()); // Último campo
+
+  return resultado;
+}
+
+
 async function carregarDados() {
   if (window.dados.length > 0) return; // evita carregamento duplicado
 
@@ -14,7 +41,7 @@ async function carregarDados() {
     const cabecalho = linhas[0].split(",");
 
     window.dados = linhas.slice(1).map(l => {
-      const valores = l.split(",");
+const valores = parseCsvLinhaComAspas(l);
       const obj = {};
       cabecalho.forEach((c, i) => (obj[c.trim()] = valores[i]?.trim()));
       return obj;
