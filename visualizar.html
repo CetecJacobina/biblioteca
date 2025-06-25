@@ -2,44 +2,30 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Visualização do PDF</title>
-  <link rel="stylesheet" href="css/estilo.css">
+  <title>Visualizador de PDF</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
     }
-
-    header {
-      background: #1a73e8;
-      color: #fff;
-      padding: 10px;
-      text-align: center;
-    }
-
     iframe {
       width: 100%;
-      height: calc(100vh - 50px);
+      height: 100vh;
       border: none;
     }
   </style>
 </head>
 <body>
-  <header>📖 Visualização do Documento</header>
-  <main>
-      
-      <iframe id="pdfFrame" src=""></iframe>
-  </main>
-
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
 
     if (id) {
-      const viewerUrl = `https://drive.google.com/file/d/${id}/preview`;
-      document.getElementById("pdfFrame").src = viewerUrl;
+      document.body.innerHTML = `
+        <iframe src="https://drive.google.com/file/d/${id}/preview" allow="autoplay"></iframe>
+      `;
     } else {
-      document.getElementById("pdfFrame").outerHTML = "<p style='padding:20px'>ID do documento não informado.</p>";
+      document.body.innerHTML = "<p>📂 Nenhum arquivo PDF foi especificado.</p>";
     }
   </script>
 </body>
