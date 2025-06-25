@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Visualizador de PDF</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-    iframe {
-      width: 100%;
-      height: 100vh;
-      border: none;
-    }
-  </style>
-</head>
-<body>
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
 
-    if (id) {
-      document.body.innerHTML = `
-        <iframe src="https://drive.google.com/file/d/${id}/preview" allow="autoplay"></iframe>
+<head>
+    <meta charset="UTF-8">
+    <title>Visualizador de PDF</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        if (id) {
+            document.body.innerHTML = `
+              <header> <h1>Biblioteca Virtual CETEC</h1></header>
+
+      <main>
+        <iframe src="https://drive.google.com/file/d/${id}/preview" allow="autoplay"></iframe></main>
       `;
-    } else {
-      document.body.innerHTML = "<p>📂 Nenhum arquivo PDF foi especificado.</p>";
-    }
-  </script>
+        } else {
+            document.body.innerHTML = "<p>📂 Nenhum arquivo PDF foi especificado.</p>";
+        }
+    </script>
 </body>
+
 </html>
