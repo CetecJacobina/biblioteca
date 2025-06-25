@@ -4,14 +4,18 @@ let categoriaSelecionada = "";
 
 // 🔎 Atualiza o array filtrado com base no termo e na categoria
 function filtrarDados() {
-  dadosFiltrados = dados.filter(item => {
+  if (!window.dados || window.dados.length === 0) return;
+
+  dadosFiltrados = window.dados.filter(item => {
     const termo = termoBusca.toLowerCase();
     const titulo = item["Título"]?.toLowerCase() || "";
     const autor = item["Autor"]?.toLowerCase() || "";
     const categoria = item["Categoria"]?.toLowerCase() || "";
 
-    const correspondeBusca = titulo.includes(termo) || autor.includes(termo) || categoria.includes(termo);
-    const correspondeCategoria = !categoriaSelecionada || categoria === categoriaSelecionada.toLowerCase();
+    const correspondeBusca =
+      titulo.includes(termo) || autor.includes(termo) || categoria.includes(termo);
+    const correspondeCategoria =
+      !categoriaSelecionada || categoria === categoriaSelecionada.toLowerCase();
 
     return correspondeBusca && correspondeCategoria;
   });
@@ -21,11 +25,19 @@ function filtrarDados() {
   atualizarControlesPaginacao(dadosFiltrados);
 }
 
-// 🧠 Preenche automaticamente o select com as categorias disponíveis
+// 🧠 Preenche o <select> com categorias únicas
 function preencherCategorias() {
   const select = document.getElementById("categoriaFiltro");
-  const categorias = [...new Set(dados.map(i => i["Categoria"]).filter(Boolean))].sort();
+  select.innerHTML = ""; // limpa as opções anteriores
 
+  // Adiciona a opção "Todas as categorias"
+  const opcaoTodas = document.createElement("option");
+  opcaoTodas.value = "";
+  opcaoTodas.textContent = "Todas as categorias";
+  select.appendChild(opcaoTodas);
+
+  // Adiciona as categorias únicas
+  const categorias = [...new Set(window.dados.map(i => i["Categoria"]).filter(Boolean))].sort();
   categorias.forEach(cat => {
     const op = document.createElement("option");
     op.value = cat;
@@ -34,7 +46,7 @@ function preencherCategorias() {
   });
 }
 
-// 🎯 Listeners
+// 🎯 Eventos
 document.getElementById("campoBusca").addEventListener("input", e => {
   termoBusca = e.target.value.trim();
   filtrarDados();
@@ -45,11 +57,11 @@ document.getElementById("categoriaFiltro").addEventListener("change", e => {
   filtrarDados();
 });
 
-// 💡 Se já carregou os dados, preenche categorias e exibe todos os itens por padrão
+// 💡 Aguarda dados carregados
 const aguardarDados = setInterval(() => {
-  if (dados && dados.length > 0) {
+  if (window.dados && window.dados.length > 0) {
     clearInterval(aguardarDados);
-    dadosFiltrados = [...dados];
+    dadosFiltrados = [...window.dados];
     preencherCategorias();
     exibirPagina(paginaAtual, dadosFiltrados);
     atualizarControlesPaginacao(dadosFiltrados);

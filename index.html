@@ -8,18 +8,18 @@
 </head>
 
 <body>
-    <header>📚 Biblioteca Virtual CETEC</header>
-    
+    <header> <h1>Biblioteca Virtual CETEC</h1></header>
+
 
     <main>
         <section id="filtros">
             <select id="categoriaFiltro">
-            <option value="">Todas as categorias</option>
-            <!-- categorias preenchidas dinamicamente via JS -->
-        </select>
-        <input type="text" id="campoBusca" placeholder="🔍 Buscar por título, autor ou categoria">
-        
-    </section>
+                <option value="">Todas as categorias</option>
+                <!-- categorias preenchidas dinamicamente via JS -->
+            </select>
+            <input type="text" id="campoBusca" placeholder="🔍 Buscar ">
+
+        </section>
         <div class="grid-container" id="acervo">Carregando...</div>
         <div id="pagination-controls"></div>
     </main>
@@ -29,10 +29,11 @@
         <p>Desenvolvido por Cetec</p>
     </footer>
 
-    <script src="js/card.js"></script>
+    <script src="js/dados.js"></script>
+    <script src="js/cards.js"></script>
     <script src="js/paginacao.js"></script>
     <script src="js/filtro.js"></script>
-
+<script src="js/main.js" defer></script>
 
 </body>
 
