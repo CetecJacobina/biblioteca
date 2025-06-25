@@ -12,22 +12,35 @@ function exibirCards(lista) {
     const div = document.createElement("div");
     div.className = "icone-livro";
 
-    div.innerHTML = `
-      <div class="card">
-        <img loading="lazy" src="${caminhoCapa}" class="capa-livro" alt="Capa de ${item["Título"]}" onclick="window.open('${item["Link"]}', '_blank')">
-        <div class="info-livro">
-          <h3>${item["Título"]}</h3>
-          <p><strong>Autor:</strong> ${item["Autor"]}</p>
-          <button class="descricao-btn" data-target="${idDescricao}">Ver Descrição</button>
-        </div>
-        <div class="descricao-popup" id="${idDescricao}">
-          <p>${item["Descrição"] || "Descrição não disponível."}</p>
-        </div>
-      </div>
-    `;
+   div.innerHTML = `
+  <div class="card">
+    <img loading="lazy"
+         src="${caminhoCapa}"
+         class="capa-livro"
+         alt="Capa de ${item["Título"]}"
+         onclick="window.location.href='visualizar.html?id=${extrairIdDrive(item["Link"])}'">
+
+    <div class="info-livro">
+      <h3>${item["Título"]}</h3>
+      <p><strong>Autor:</strong> ${item["Autor"]}</p>
+      <button class="descricao-btn" data-target="${idDescricao}">Ver Descrição</button>
+    </div>
+
+    <div class="descricao-popup" id="${idDescricao}">
+      <p>${item["Descrição"] || "Descrição não disponível."}</p>
+    </div>
+  </div>
+`;
+
 
     container.appendChild(div);
   });
+
+  function extrairIdDrive(link) {
+  const match = link.match(/\/d\/([a-zA-Z0-9_-]{10,})/);
+  return match ? match[1] : '';
+}
+
 
   // Configura interações após os elementos serem renderizados
   document.querySelectorAll(".descricao-btn").forEach(botao => {
