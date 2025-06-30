@@ -200,6 +200,41 @@ footer {
 
 /* 📱 Tablet (601px até 1000px) */
 @media (min-width: 750px) {
+
+
+  .info-livro h3 {
+  font-size: 2.25rem; /* Era 1rem */
+  margin: 10px 0 5px;
+}
+
+.info-livro p {
+  font-size: 2.1rem; /* Era 0.9rem */
+  line-height: 1.6;
+}
+
+#descricao p{
+    font-size: 2.1rem; /* Era 0.9rem */
+
+}
+
+.descricao-btn,
+.descricao-popup button {
+  font-size: 2rem; /* Era 0.9rem */
+}
+
+#campoBusca,
+#categoriaFiltro {
+  font-size: 3.1rem;
+}
+
+.menu li {
+  font-size: 2rem; /* Pode adicionar esta linha */
+}
+
+
+
+
+
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -233,4 +268,6 @@ footer {
   #filtros {
     justify-content: flex-start;
   }
+
+  
 }
