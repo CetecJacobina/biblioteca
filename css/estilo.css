@@ -1,311 +1,236 @@
- *{
+:root {
+  --cor-fundo: #f3fbff;
+  --cor-fundo-card: #fbfdff;
+  --cor-primaria: #003366;
+  --cor-secundaria: #dcdcdc;
+  --cor-texto: #333;
+  --cor-claro: #ffffff;
+  --cor-hover: #d89393;
+}
+
+* {
   margin: 0;
   padding: 0;
- }
+  box-sizing: border-box;
+}
 
-  body {
-   font-family: Arial, sans-serif;
-   margin: 0;
-   padding: 0;
-   background-color: #f3fbff;
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--cor-fundo);
+}
 
- }
+header {
+  background-color: var(--cor-primaria);
+  color: var(--cor-claro);
+  text-align: center;
+  font-size: 1em;
+  padding: 2em;
+}
 
- main {
-   background-color: #ffffff;
-   max-width: 1000px;
-   margin: auto;
-   min-height: 85vh;
-
- }
-
- header {
-   background-color: #003366;
-   color: white;
-   text-align: center;
-   font-size: 1em;
-   padding: 2em;
- }
-
-
-
- .container {
-   display: flex;
-   padding: 20px;
-   max-width: 1000px;
-   margin: auto;
-
- }
-
- .menu {
-   width: 130px;
- }
-
- .menu ul {
-   list-style-type: none;
-   padding: 0;
- }
-
- .menu li {
-   background-color: #f0f0f0;
-   padding: 10px;
-   margin-bottom: 10px;
-   cursor: pointer;
-   border-radius: 5px;
- }
-
- .menu li:hover {
-   background-color: #dcdcdc;
- }
-
- .busca {
-   flex-grow: 1;
-   padding-left: 40px;
-   display: block;
- }
-
- .busca input[type="text"] {
-   width: 80%;
-   padding: 10px;
-   font-size: 16px;
-   border: 1px solid #ccc;
-   border-radius: 5px;
- }
-
- /* 🎯 Área de filtros */
- #filtros {
+main {
+  background-color: var(--cor-claro);
+  max-width: 1000px;
+  margin: auto;
+  min-height: 85vh;
   padding: 10px;
-   max-width: 1000px;
-   display: flex;
-   flex-wrap: wrap;
-   gap: 15px;
-   align-items: center;
- }
+}
 
- /* 🔍 Campo de busca */
- #campoBusca {
-   padding: 2%;
-   font-size: 16px;
-   width: 40%;
-   border: 1px solid #ccc;
-   border-radius: 5px;
-   transition: border-color 0.3s;
- }
+footer {
+  background-color: #000;
+  color: var(--cor-claro);
+  text-align: center;
+  padding: 10px;
+  height: 50px;
+}
 
- #campoBusca:focus {
-   border-color: #003366;
-   outline: none;
- }
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+}
 
- /* 📂 Filtro de categoria */
- #categoriaFiltro {
-   margin-left: 5%;
-   padding: 2%;
-   font-size: 16px;
-   width: 30%;
-   border: 1px solid #ccc;
-   border-radius: 5px;
-   background-color: white;
-   transition: border-color 0.3s;
- }
+.menu {
+  width: 100%;
+}
 
- #categoriaFiltro:focus {
-   border-color: #003366;
-   outline: none;
- }
+.menu ul {
+  list-style-type: none;
+}
 
+.menu li {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
- /* 📌 Botões de paginação */
- #pagination-controls {
-   margin-top: 20px;
- }
+.menu li:hover {
+  background-color: var(--cor-secundaria);
+}
 
- #pagination-controls button {
-   padding: 10px 15px;
-   font-size: 14px;
-   background-color: #003366;
-   color: white;
-   border: none;
-   border-radius: 4px;
-   cursor: pointer;
-   margin: 5px;
- }
+.busca {
+  width: 100%;
+}
 
- #pagination-controls button:disabled {
-   background-color: #ccc;
-   cursor: not-allowed;
- }
+.busca input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
+/* 🎯 Filtros */
+#filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+}
 
- .grid-container {
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   gap: 20px;
-   max-width: 1000px;
-   padding: 60px;
+#campoBusca,
+#categoriaFiltro {
+  flex: 1 1 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
+#campoBusca:focus,
+#categoriaFiltro:focus {
+  border-color: var(--cor-primaria);
+  outline: none;
+}
 
- }
+/* 📂 Cards */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
+}
 
- .icone-livro {
-   background: #fbfdff;
-   border-radius: 8px;
-   padding: 10px;
-   text-align: center;
-   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-   position: relative;
- }
+.icone-livro {
+  background: var(--cor-fundo-card);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
 
- .capa-livro {
-   width: 100%;
-   height: auto;
-   cursor: pointer;
-   border-radius: 4px;
- }
+.capa-livro {
+  width: 100%;
+  max-width: 256px;
+  height: auto;
+  cursor: pointer;
+  border-radius: 4px;
+}
 
- .info-livro h3 {
-   font-size: 16px;
-   margin: 10px 0 4px;
- }
+.info-livro h3 {
+  font-size: 1rem;
+  margin: 10px 0 5px;
+}
 
- .info-livro p {
-   margin: 0;
-   font-size: 14px;
-   color: #333;
- }
+.info-livro p {
+  font-size: 0.9rem;
+  color: var(--cor-texto);
+}
 
- .descricao-btn {
-   margin-top: 8px;
-   padding: 6px 10px;
-   font-size: 13px;
-   background-color: #003366;
-   color: white;
-   border: none;
-   border-radius: 4px;
-   cursor: pointer;
- }
+.descricao-btn {
+  margin-top: 8px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  background-color: var(--cor-primaria);
+  color: var(--cor-claro);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
- .descricao-popup {
-   display: none;
-   position: absolute;
-   top: 10px;
-   left: 10px;
-   right: 10px;
-   padding: 10px;
-   background: #fff;
-   border: 1px solid #ccc;
-   border-radius: 5px;
-   z-index: 10;
-   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
- }
+.descricao-popup {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  padding: 10px;
+  background: var(--cor-claro);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 
- .descricao-popup button {
-   font-size: 1em;
-   margin-top: 8px;
-   padding: 6px 10px;
-   background-color: #d89393;
-   color: white;
-   border: none;
-   border-radius: 4px;
-   cursor: pointer;
- }
+.descricao-popup button {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background-color: var(--cor-hover);
+  color: var(--cor-claro);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
 
+/* 📌 Paginação */
+#pagination-controls {
+  margin-top: 20px;
+  text-align: center;
+}
 
- footer {
-   color: #fff;
-   background-color: black;
-   height: 50px;
-   text-align: center;
-   padding: 10px;
+#pagination-controls button {
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
 
- }
+#pagination-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 
-
-
- /* 🖥 Desktop grande (acima de 1000px) */
- @media (min-width: 1001px) {
-   .grid-container {
-     grid-template-columns: repeat(3, 1fr);
-     padding: 60px;
-   }
-
-   #filtros {
-     justify-content: flex-start;
-   }
- }
-
-
-
-
-
- /* 📱 Celular (até 600px) */
- @media (max-width: 600px) {
-   .grid-container {
-     grid-template-columns: 1fr;
-     padding: 20px;
-   }
-
-    
-  
-
-   .descricao-popup {
-     left: 5px;
-     right: 5px;
-     top: 20%;
-     max-width: 90%;
-     font-size: 1.5em;
-   }
-
-   .descricao-btn {
-
-     font-size: 3em;
-
-   }
-
-   div.info-livro h3,
-   div.info-livro p {
-     font-size: 2em;
-   }
-
- }
-
- /* 📱📱 Tablet (entre 601px e 1000px) */
- @media (min-width: 601px) and (max-width: 1000px) {
-
-   
-
-   .grid-container {
-     grid-template-columns: repeat(2, 1fr);
-     padding: 40px;
-   }
-
-   #filtros {
-     flex-wrap: wrap;
-     justify-content: space-between;
-   }
-
-  
-
-   .descricao-popup {
-     font-size: 1.5em;
-
-   }
-
-   
-   .descricao-btn {
-
-     font-size: 2em;
-
-   }
-
-   .descricao-popup button {
-font-size: 0.5em;
- 
+/* 📱 Tablet (601px até 1000px) */
+@media (min-width: 601px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-   div.info-livro h3,
-   div.info-livro p {
-     font-size: 2em;
-   }
+  #campoBusca,
+  #categoriaFiltro {
+    flex: 1 1 48%;
+  }
 
- }
+  .container {
+    flex-direction: row;
+  }
+
+  .menu {
+    width: 130px;
+  }
+
+  .busca {
+    padding-left: 40px;
+    flex-grow: 1;
+  }
+}
+
+/* 🖥 Desktop grande (acima de 1000px) */
+@media (min-width: 1001px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 40px;
+  }
+
+  #filtros {
+    justify-content: flex-start;
+  }
+}
