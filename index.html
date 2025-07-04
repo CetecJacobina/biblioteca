@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <header> <h1>Biblioteca Virtual CETEC</h1></header>
+    <header> <h1>Biblioteca Virtual</h1></header>
 
 
     <main>
@@ -22,6 +22,14 @@
         </section>
         <div class="grid-container" id="acervo">Carregando...</div>
         <div id="pagination-controls"></div>
+<div id="overlay"></div>
+
+<div class="descricao-popup" id="descricaoPopup">
+  <p>Aqui vai a descrição do item selecionado.</p>
+  <button onclick="fecharDescricao()">Fechar</button>
+</div>
+
+
     </main>
 
     <footer>
@@ -33,6 +41,18 @@
     <script src="js/cards.js"></script>
     <script src="js/paginacao.js"></script>
     <script src="js/filtro.js"></script>
+    <script>
+  function abrirDescricao(texto) {
+    document.getElementById('descricaoPopup').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('descricaoPopup').querySelector('p').textContent = texto;
+  }
+
+  function fecharDescricao() {
+    document.getElementById('descricaoPopup').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+  }
+</script>
 <script src="js/main.js" defer></script>
 
 </body>
