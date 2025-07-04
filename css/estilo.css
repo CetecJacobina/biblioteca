@@ -10,10 +10,10 @@
 
   /* 🔠 Tamanhos de fonte */
   --font-base: 16px;
-  --font-card-titulo: 1.25rem;
-  --font-card-texto: 1.1rem;
+  --font-titulo: 1.25rem;
+  --font-paragrafo: 1.1rem;
+  --font-btn: 1rem;
   --font-input: 1.1rem;
-  --font-botao: 1rem;
 }
 
 * {
@@ -28,13 +28,17 @@ body {
   background-color: var(--cor-fundo);
 }
 
+/* 🧱 Estilos base (até 719px) */
 header {
-  background-color: #ff6666; /* 🔴 Mobile pequeno */
+  background-color: var(--cor-primaria);; /* 🔴 mobile pequeno */
   color: var(--cor-claro);
   text-align: center;
   font-size: 1rem;
   padding: 2em;
+  box-shadow: inset 0px -5px 15px rgba(0, 0, 0, 0.199);
+  margin-bottom: 10px;
 }
+
 
 main {
   background-color: var(--cor-claro);
@@ -52,7 +56,6 @@ footer {
   height: 50px;
 }
 
-/* 🔎 Layout base */
 .container {
   display: flex;
   flex-direction: column;
@@ -74,14 +77,13 @@ footer {
   margin-bottom: 10px;
   cursor: pointer;
   border-radius: 5px;
-  font-size: var(--font-botao);
+  font-size: var(--font-btn);
 }
 
 .menu li:hover {
   background-color: var(--cor-secundaria);
 }
 
-/* 🔍 Campo de busca */
 .busca {
   width: 100%;
 }
@@ -106,7 +108,7 @@ footer {
 #categoriaFiltro {
   flex: 1 1 100%;
   padding: 10px;
-  font-size: 1.1rem;
+  font-size: var(--font-input);
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -127,6 +129,8 @@ footer {
 
 .icone-livro {
   background: var(--cor-fundo-card);
+  width: 80%;
+  margin: auto;
   border-radius: 8px;
   padding: 10px;
   text-align: center;
@@ -141,27 +145,39 @@ footer {
   cursor: pointer;
   border-radius: 4px;
 }
+.info-livro {
+font-size: 2rem;
+}
 
 .info-livro h3 {
-  font-size: var(--font-card-titulo);
+  font-size: var(--font-titulo);
   margin: 10px 0 5px;
+  font-size: 2rem;
+
 }
 
 .info-livro p {
-  font-size: var(--font-card-texto);
+  font-size: var(--font-paragrafo);
   color: var(--cor-texto);
   line-height: 1.6;
+  font-size: 2rem;
+
 }
+
+
+
 
 .descricao-btn {
   margin-top: 8px;
   padding: 6px 10px;
-  font-size: var(--font-botao);
+  font-size: var(--font-btn);
   background-color: var(--cor-primaria);
   color: var(--cor-claro);
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 2rem;
+
 }
 
 .descricao-popup {
@@ -186,7 +202,7 @@ footer {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: var(--font-botao);
+  font-size: var(--font-btn);
 }
 
 /* 📌 Paginação */
@@ -211,11 +227,11 @@ footer {
   cursor: not-allowed;
 }
 
-/* 📱 480px a 767px — Celulares maiores */
-@media (min-width: 480px) and (max-width: 767px) {
+/* 📱 720px a 1079px — tablet e notebooks médios */
+@media (min-width: 720px) and (max-width: 1079px) {
   header {
-    background-color: #ffa500; /* 🟠 Laranja */
-    font-size: 1.1rem;
+    background-color: #f0ad4e; /* 🟠 Laranja suave */
+    font-size: 1.2rem;
   }
 
   .grid-container {
@@ -226,30 +242,7 @@ footer {
   #campoBusca,
   #categoriaFiltro {
     font-size: 1.4rem;
-  }
-
-  .info-livro h3,
-  .info-livro p {
-    font-size: 1.2rem;
-  }
-}
-
-/* 📲 768px a 1000px — Tablets e notebooks pequenos */
-@media (min-width: 768px) and (max-width: 1000px) {
-  header {
-    background-color: #00ced1; /* 🔵 Azul piscina */
-    font-size: 1.2rem;
-  }
-
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 40px;
-  }
-
-  #campoBusca,
-  #categoriaFiltro {
     flex: 1 1 48%;
-    font-size: 1.5rem;
   }
 
   .container {
@@ -271,25 +264,25 @@ footer {
   }
 }
 
-/* 🖥 Acima de 1001px — Desktop */
-@media (min-width: 1001px) {
+/* 🖥 A partir de 1080px — desktop grandes */
+@media (min-width: 1080px) {
   header {
-    background-color: #4682b4; /* 🔷 Azul Steel */
+    background-color: #5bc0de; /* 🔵 Azul claro */
     font-size: 1.3rem;
   }
 
   .grid-container {
     grid-template-columns: repeat(3, 1fr);
-    padding: 50px;
-  }
-
-  #filtros {
-    justify-content: flex-start;
+    padding: 40px;
   }
 
   #campoBusca,
   #categoriaFiltro {
     font-size: 1.6rem;
+  }
+
+  #filtros {
+    justify-content: flex-start;
   }
 
   .info-livro h3,
