@@ -2,7 +2,7 @@
   /* 🎨 Paleta de Cores */
   --cor-fundo: #00336642;
   --cor-fundo-card: #fbfdff;
-  --cor-primaria: #003366;
+  --cor-primaria: #001366;
   --cor-secundaria: #dcdcdc;
   --cor-texto: #333;
   --cor-claro: #ffffff;
@@ -25,17 +25,39 @@
 body {
   font-family: Arial, sans-serif;
   font-size: var(--font-base);
-  background-color: var(--cor-fundo);
+  background-color: #fff;
 }
 
 header {
   background-color: var(--cor-primaria);
   color: var(--cor-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100px;
+
   text-align: center;
   font-size: 1.4rem;
-  padding: 2em;
-  box-shadow: inset 0px -5px 15px rgba(0, 0, 0, 0.199);
+  padding: 1em;
+  box-shadow: inset 0px -5px 55px rgba(255, 255, 255, 0.199);
 }
+
+.logo {
+  position: absolute;
+  left: 15%;
+  height: 60px;
+      transition: 1s;
+
+}
+
+.titulo {
+  margin: 0;
+  font-size: 24px;
+  text-align: center;
+}
+
+
 
 main {
   background-color: var(--cor-claro);
@@ -43,11 +65,11 @@ main {
   margin: auto;
   min-height: 85vh;
   padding: 10px;
-    box-shadow:  0px -5px 15px rgba(0, 0, 0, 0.199);
+  box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.055);
 
 }
 
-footer > p {
+footer>p {
   background-color: #000000;
   color: var(--cor-claro);
   text-align: center;
@@ -107,6 +129,7 @@ footer > p {
 #categoriaFiltro {
   flex: 1 1 100%;
   padding: 10px;
+  margin-left: 1%;
   font-size: var(--font-input);
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -234,6 +257,20 @@ footer > p {
     background-color: var(--cor-primaria);
     font-size: 1.4rem;
   }
+  .header {
+    height: 80px;
+  }
+
+  .logo {
+    height: 40px;
+    left: 10px;
+    transition: 1s;
+  }
+
+ 
+
+
+
 
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
