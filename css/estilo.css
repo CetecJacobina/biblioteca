@@ -8,14 +8,15 @@
   --cor-claro: #ffffff;
   --cor-hover: #d89393;
 
-  /* 🔠 Tamanhos de fonte */
+  /* 🔠 Tamanhos de fonte padrão */
   --font-base: 16px;
   --font-titulo: 2rem;
-  --font-paragrafo: 2rem.;
+  --font-paragrafo: 2rem;
   --font-btn: 2rem;
   --font-input: 2.1rem;
 }
 
+/* 🔧 Reset e base */
 * {
   margin: 0;
   padding: 0;
@@ -28,6 +29,25 @@ body {
   background-color: #fff;
 }
 
+/* 🧱 Estrutura principal */
+main {
+  background-color: var(--cor-claro);
+  max-width: 1600px;
+  margin: auto;
+  min-height: 85vh;
+  padding: 10px;
+  box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.055);
+}
+
+footer > p {
+  background-color: #000;
+  color: var(--cor-claro);
+  text-align: center;
+  padding: 3rem;
+  font-size: var(--font-titulo);
+}
+
+/* 🧭 Cabeçalho */
 header {
   background-color: var(--cor-primaria);
   color: var(--cor-claro);
@@ -36,109 +56,19 @@ header {
   justify-content: center;
   position: relative;
   height: 100px;
-
   text-align: center;
   font-size: 1.4rem;
   padding: 1em;
   box-shadow: inset 0px -5px 55px rgba(255, 255, 255, 0.199);
+  margin: auto;
 }
+
 
 .logo {
   position: absolute;
-  left: 15%;
-  height: 60px;
-      transition: 1s;
-
-}
-
-.titulo {
-  margin: 0;
-  font-size: 24px;
-  text-align: center;
-}
-
-
-
-main {
-  background-color: var(--cor-claro);
-  max-width: 1600px;
-  margin: auto;
-  min-height: 85vh;
-  padding: 10px;
-  box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.055);
-
-}
-
-footer>p {
-  background-color: #000000;
-  color: var(--cor-claro);
-  text-align: center;
-  padding: 3rem;
-  font-size: var(--font-titulo);
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  gap: 20px;
-}
-
-.menu {
-  width: 100%;
-}
-
-.menu ul {
-  list-style-type: none;
-}
-
-.menu li {
-  background-color: #f0f0f0;
-  padding: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: var(--font-btn);
-}
-
-.menu li:hover {
-  background-color: var(--cor-secundaria);
-}
-
-.busca {
-  width: 100%;
-}
-
-.busca input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  font-size: var(--font-input);
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-/* 🎯 Filtros */
-#filtros {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px;
-}
-
-#campoBusca,
-#categoriaFiltro {
-  flex: 1 1 100%;
-  padding: 10px;
-  margin-left: 1%;
-  font-size: var(--font-input);
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-#campoBusca:focus,
-#categoriaFiltro:focus {
-  border-color: var(--cor-primaria);
-  outline: none;
+  left: 10%;
+  height: 40px;
+  transition: 1s;
 }
 
 /* 📚 Cards */
@@ -146,7 +76,6 @@ footer>p {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  padding: 20px;
 }
 
 .icone-livro {
@@ -194,32 +123,9 @@ footer>p {
   cursor: pointer;
 }
 
-.descricao-popup {
-  display: none;
-  position: fixed;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 600px;
-  background: var(--cor-claro);
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  z-index: 1000;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  font-size: var(--font-titulo);
-}
 
-.descricao-popup button {
-  margin-top: 8px;
-  padding: 6px 20px;
-  color: var(--cor-claro);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: var(--font-btn);
-}
+
+
 
 /* 📌 Paginação */
 #pagination-controls {
@@ -243,34 +149,195 @@ footer>p {
   cursor: not-allowed;
 }
 
-/* 📱 720px a 1079px — tablet e notebooks médios */
+/* 🎯 Filtros */
+#filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  width: 95%;
+  margin: auto;
+}
+
+#campoBusca,
+#categoriaFiltro {
+  flex: 1 1 100%;
+  padding: 10px;
+  margin-left: 1%;
+  font-size: var(--font-input);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#campoBusca:focus,
+#categoriaFiltro:focus {
+  border-color: var(--cor-primaria);
+  outline: none;
+}
+
+/* 📂 Menu e busca */
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  gap: 20px;
+}
+
+.menu {
+  width: 100%;
+}
+
+.menu ul {
+  list-style-type: none;
+}
+
+.menu li {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: var(--font-btn);
+}
+
+.menu li:hover {
+  background-color: var(--cor-secundaria);
+}
+
+.busca {
+  width: 100%;
+}
+
+.busca input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: var(--font-input);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.livro-detalhes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 40px;
+  text-align: left;
+}
+
+.livro-detalhes img {
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.livro-info {
+  max-width: 600px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.livro-info h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  color: var(--cor-primaria, #003366);
+}
+
+.livro-info p {
+  margin: 8px 0;
+}
+
+.livro-info a button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #003366;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 📱 Telas pequenas (até 719px) */
+@media (max-width: 719px) {
+  header {
+    display: block;
+    height: auto;
+    padding: 20px 10px;
+    text-align: center;
+  }
+
+  .logo {
+    position: static;
+    display: block;
+    margin: 0 auto 10px;
+    height: 50px;
+  }
+
+  .titulo {
+    font-size: 1.8rem;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+}
+
+
+
+
+
+
+
+/* 📱 720px a 1079px — tablets e notebooks médios */
 @media (min-width: 720px) and (max-width: 1079px) {
   :root {
     --font-base: 32px;
     --font-titulo: 2rem;
     --font-paragrafo: 2rem;
-    --font-btn: 2.1rem;
+    --font-btn: 1.5rem;
     --font-input: 2rem;
   }
 
   header {
-    background-color: var(--cor-primaria);
     font-size: 1.4rem;
-  }
-  .header {
-    height: 80px;
   }
 
   .logo {
     height: 40px;
-    left: 10px;
-    transition: 1s;
+    left: 5%;
   }
-
- 
-
-
-
 
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
@@ -296,7 +363,30 @@ footer>p {
   }
 }
 
-/* 🖥 A partir de 1080px — desktop grandes */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 🖥 A partir de 1080px — desktops grandes */
 @media (min-width: 1080px) {
   :root {
     --font-base: 32px;
@@ -307,12 +397,17 @@ footer>p {
   }
 
   header {
-    background-color: var(--cor-primaria);
+    font-size: 1.2rem;
+  }
+
+  .logo {
+    height: 50px;
+    left: 10%;
   }
 
   .grid-container {
     grid-template-columns: repeat(3, 1fr);
-    padding: 40px;
+    padding: 10px;
   }
 
   #campoBusca,

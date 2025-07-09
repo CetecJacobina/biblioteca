@@ -1,0 +1,64 @@
+<!-- descricao.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Descrição do Livro</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <header>📘 Detalhes do Livro</header>
+
+<main id="conteudoLivro" class="livro-detalhes">
+  Carregando detalhes do livro...
+</main>
+
+  <footer><p>Desenvolvido por Cetec</p></footer>
+
+  <script src="js/dados.js"></script> <!-- contém o array 'dados' -->
+  <script>
+    async function carregarDescricao() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+
+      if (!id) {
+        document.getElementById("conteudoLivro").innerText = "ID do livro não fornecido.";
+        return;
+      }
+
+      if (typeof dados === "undefined" || dados.length === 0) {
+        await carregarDados(); // função do seu js/dados.js
+      }
+
+      const livro = dados.find(l => (l["Link"] || "").includes(id));
+
+      if (!livro) {
+        document.getElementById("conteudoLivro").innerText = "Livro não encontrado.";
+        return;
+      }
+
+      const caminhoCapa = livro["Capa"]
+        ? `https://raw.githubusercontent.com/CetecJacobina/biblioteca/refs/heads/main/assets/capas/${encodeURIComponent(livro["Capa"])}`
+        : "https://raw.githubusercontent.com/CetecJacobina/biblioteca/refs/heads/main/assets/capas/default.jpg";
+
+ document.getElementById("conteudoLivro").innerHTML = `
+  <img src="${caminhoCapa}" alt="Capa de ${livro["Título"]}">
+  <div class="livro-info">
+    <h2>${livro["Título"]}</h2>
+    <p><strong>Autor:</strong> ${livro["Autor"]}</p>
+    <p><strong>Editora:</strong> ${livro["Editora"]}</p>
+    <p><strong>Ano:</strong> ${livro["Ano"]}</p>
+    <p><strong>Categoria:</strong> ${livro["Categoria"]}</p>
+    <p><strong>Descrição:</strong> ${livro["Descrição"] || "Não disponível."}</p>
+    <button onclick="window.location.href='visualizar.html?id=${encodeURIComponent(id)}'">Abrir PDF</button>
+  </div>
+`;
+
+
+
+    }
+
+    carregarDescricao();
+  </script>
+</body>
+</html>
