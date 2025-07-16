@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Subir PDF</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <h1>Cadastro de Livro</h1>
+
+  <form id="formLivro">
+    <input type="text" name="titulo" placeholder="Título" required><br>
+    <input type="text" name="autor" placeholder="Autor" required><br>
+    <input type="text" name="categoria" placeholder="Categoria" required><br>
+    <textarea name="descricao" placeholder="Descrição" required></textarea><br>
+
+    <input type="file" name="pdf" accept="application/pdf" required><br>
+
+    <label>
+      <input type="checkbox" id="usarCapaManual">
+      Enviar capa manualmente
+    </label><br>
+
+    <input type="file" name="capa" id="campoCapa" accept="image/*" style="display: none;"><br>
+
+    <!-- 🔐 Campo adicional para token -->
+    <label for="campoToken">🔐 Token Privado:</label>
+    <input type="text" id="campoToken" placeholder="Digite seu token aqui" required
+           style="margin-bottom: 10px; padding: 5px; width: 250px;"><br>
+
+    <button type="submit">Enviar</button>
+    <div id="resultado" style="margin-top: 15px;"></div>
+  </form>
+
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  </script>
+
+  <script src="uploadLivro.js"></script>
+</body>
+</html>

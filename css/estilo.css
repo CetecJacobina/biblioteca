@@ -39,7 +39,7 @@ main {
   box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.055);
 }
 
-footer > p {
+footer>p {
   background-color: #000;
   color: var(--cor-claro);
   text-align: center;
@@ -230,7 +230,7 @@ header {
 .livro-detalhes img {
   width: 400px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .livro-info {
@@ -259,6 +259,40 @@ header {
   cursor: pointer;
 }
 
+
+footer>#link {
+  background-color: var(--cor-primaria);
+  color: var(--cor-claro);
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.5rem;
+  text-decoration: none;
+
+  display: flex;
+  /* transforma em flex container */
+  justify-content: center;
+  /* centraliza os links */
+  gap: 100px;
+  /* espaçamento entre os links */
+  flex-wrap: wrap;
+  /* permite quebra de linha se necessário */
+}
+
+a {
+  text-decoration: none;
+  padding: 10px;
+  color: white;
+  background-color: #cccccc1e;
+  background-image: linear-gradient(0deg, #cccccc1f, var(--cor-primaria));
+  border-radius: 10px;
+  font-size: 1.5rem;
+
+}
+
+a:hover {
+  background-color: #a5a5a5;
+
+}
 
 
 
@@ -312,6 +346,30 @@ header {
   .container {
     flex-direction: column;
   }
+
+
+  footer p {
+    font-size: 1.5em;
+  }
+
+  footer>#link {
+
+    gap: 10px;
+    /* espaçamento entre os links */
+    flex-wrap: wrap;
+    /* permite quebra de linha se necessário */
+  }
+
+  a {
+
+    font-size: 1.5rem;
+
+  }
+
+
+
+
+
 }
 
 
@@ -361,6 +419,25 @@ header {
     padding-left: 40px;
     flex-grow: 1;
   }
+
+  footer p {
+    font-size: 0.8em;
+  }
+
+  footer>#link {
+
+    gap: 10px;
+    /* espaçamento entre os links */
+    flex-wrap: wrap;
+    /* permite quebra de linha se necessário */
+  }
+
+  a {
+
+    font-size: 1.5rem;
+  }
+
+
 }
 
 
@@ -392,7 +469,7 @@ header {
     --font-base: 32px;
     --font-titulo: 2rem;
     --font-paragrafo: 2rem;
-    --font-btn: 2.1rem;
+    --font-btn: 1.5rem;
     --font-input: 1.3rem;
   }
 
@@ -418,4 +495,25 @@ header {
   #filtros {
     justify-content: flex-start;
   }
+
+  footer p {
+    font-size: 0.8em;
+  }
+
+  footer>#link {
+
+    gap: 100px;
+    /* espaçamento entre os links */
+    flex-wrap: wrap;
+    /* permite quebra de linha se necessário */
+  }
+
+  a {
+
+    font-size: 1.5rem;
+
+  }
+
+
+
 }
