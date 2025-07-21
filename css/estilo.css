@@ -260,8 +260,7 @@ header {
 }
 
 
-footer>#link {
-  background-color: var(--cor-primaria);
+header>#link {
   color: var(--cor-claro);
   text-align: center;
   padding: 1rem;
@@ -283,14 +282,14 @@ a {
   padding: 10px;
   color: white;
   background-color: #cccccc1e;
-  background-image: linear-gradient(0deg, #cccccc1f, var(--cor-primaria));
+  background-image: linear-gradient(0deg, #cccccc0a, var(--cor-primaria));
   border-radius: 10px;
   font-size: 1.5rem;
 
 }
 
 a:hover {
-  background-color: #a5a5a5;
+  background-color: #a5a5a562;
 
 }
 

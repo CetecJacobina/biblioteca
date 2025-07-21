@@ -2,19 +2,141 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Acervo de PDFs</title>
+  <title>Capas dos Livros</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 10px 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .livro {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 6px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .livro img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .livro h3 {
+      margin: 10px 0 5px;
+      font-size: 16px;
+    }
+
+    .livro p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    ul {
+      font-family: monospace;
+      font-size: 14px;
+      padding-left: 20px;
+    }
+
+    #tabela-debug {
+      overflow: auto;
+      max-height: 400px;
+      border: 1px solid #ccc;
+      background: #fff;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
-  <h1>Acervo de PDFs</h1>
-  <ul>
-    <li><a href="https://drive.google.com/file/d/1YATJiYPBIdwtNEUcg9ncxLdVgAGzPU4y/view" target="_blank">Nome do Documento 1</a></li>
-    <li><a href="https://drive.google.com/file/d/1YATJiYPBIdwtNEUcg9ncxLdVgAGzPU4y/view" target="_blank">Nome do Documento 2</a></li>
-    <!-- Adicione mais manualmente ou dinamicamente via API -->
-  </ul>
+  <h1>Capas dos Livros</h1>
+
+  <details>
+    <summary>🧪 Ver HTML bruto da planilha (debug)</summary>
+    <div id="tabela-debug">Carregando HTML da planilha...</div>
+  </details>
+
+  <h2>📄 Lista de dados extraídos:</h2>
+  <ul id="lista-dados"></ul>
+
+  <h2>🎨 Capas renderizadas:</h2>
+  <div class="grid" id="capas">Carregando capas...</div>
+
+  <script>
+    async function carregarCapas() {
+      const urlPlanilha = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTooQzjQ8ocBjbY9tptkCuJ6vEOktUBsmUaiqY8QU1Yegh2M_MLOs8zeVJtno0T2qy-Bc4aBUSubvOC/pubhtml";
+
+      try {
+        const res = await fetch(urlPlanilha);
+        const html = await res.text();
+
+        document.getElementById("tabela-debug").innerHTML = html;
+
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        const tabela = doc.querySelector("table");
+        if (!tabela) throw new Error("Não foi encontrada a tabela na planilha.");
+
+        const cabecalhos = Array.from(tabela.querySelectorAll("thead tr th")).map(th => th.textContent.trim());
+
+        // Define os índices com tolerância
+        const idxTitulo = cabecalhos.findIndex(h => h.toLowerCase().includes("título"));
+        const idxAutor = cabecalhos.findIndex(h => h.toLowerCase().includes("autor"));
+        const idxCapa = cabecalhos.findIndex(h => h.toLowerCase().includes("id da capa"));
+
+        if (idxTitulo === -1 || idxAutor === -1 || idxCapa === -1) throw new Error("Colunas esperadas não encontradas.");
+
+        const linhas = Array.from(tabela.querySelectorAll("tbody tr"));
+        const grid = document.getElementById("capas");
+        const lista = document.getElementById("lista-dados");
+        grid.innerHTML = "";
+        lista.innerHTML = "";
+
+        linhas.forEach(tr => {
+          const colunas = Array.from(tr.querySelectorAll("td")).map(td => td.textContent.trim());
+          const titulo = colunas[idxTitulo];
+          const autor = colunas[idxAutor];
+          const idCapa = colunas[idxCapa];
+
+          if (!titulo || !autor || !idCapa) return;
+
+          const urlCapa = `https://drive.usercontent.google.com/download?id=${idCapa}&export=view`;
+
+          // Cria a capa visual
+          const div = document.createElement("div");
+          div.className = "livro";
+          div.innerHTML = `
+            <img src="${urlCapa}" alt="Capa de ${titulo}">
+            <h3>${titulo}</h3>
+            <p>${autor}</p>
+          `;
+          grid.appendChild(div);
+
+          // Cria entrada na lista textual
+          const li = document.createElement("li");
+          li.textContent = `📘 ${titulo} - ${autor} (ID da capa: ${idCapa})`;
+          lista.appendChild(li);
+        });
+      } catch (erro) {
+        console.error("Erro ao carregar dados:", erro);
+        document.getElementById("capas").textContent = "❌ Não foi possível carregar os dados da planilha.";
+      }
+    }
+
+    carregarCapas();
+  </script>
 </body>
 </html>

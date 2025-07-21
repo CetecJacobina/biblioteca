@@ -1,0 +1,8 @@
+function configurarAmbiente() {
+  const props = PropertiesService.getScriptProperties();
+  props.setProperty("TOKEN_PRIVADO", "ctc");
+  props.setProperty("PASTA_PDF", "1P1fgaKx0oOxbmGoFG7VSgzPAAflViOY_");
+  props.setProperty("PASTA_CAPAS", "1L9F3j6k0H0cKn2uWkJQ4euzEFReaZMx6");
+  props.setProperty("ID_PLANILHA_DADOS", "1Rh5gQ3Dy89kJCnbJ_KVVLVQObft1xFHJ12qXqcmrQHU");
+  props.setProperty("ID_PLANILHA_LINKS", "1PtRSokGaMUZs5nZ5oLcDwuj3_lCh2NmazB62y4h7AcE");
+}

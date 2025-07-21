@@ -1,103 +1,80 @@
-const form = document.getElementById("formLivro");
-const usarCapaManual = document.getElementById("usarCapaManual");
-const campoCapa = document.getElementById("campoCapa");
+// Configura o worker do PDF.js
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
-usarCapaManual.addEventListener("change", () => {
-  campoCapa.style.display = usarCapaManual.checked ? "block" : "none";
+// Alterna exibição do campo de capa
+document.getElementById("usarCapaManual").addEventListener("change", (e) => {
+  const campoCapa = document.getElementById("campoCapa");
+  campoCapa.style.display = e.target.checked ? "block" : "none";
 });
 
-form.addEventListener("submit", async (e) => {
+// Manipulação do envio do formulário
+document.getElementById("formLivro").addEventListener("submit", async (e) => {
   e.preventDefault();
   const resultado = document.getElementById("resultado");
   resultado.innerText = "⏳ Enviando...";
 
+  const form = e.target;
   const formData = new FormData(form);
-  const token = document.getElementById("campoToken").value.trim();
 
   const pdfFile = formData.get("pdf");
+  const usarCapaManual = document.getElementById("usarCapaManual").checked;
+
   const pdfBase64 = await toBase64(pdfFile);
+  formData.append("pdfBase64", pdfBase64.replace(/^data:application\/pdf;base64,/, ""));
 
-  let capaBase64 = "";
-
-  if (usarCapaManual.checked) {
+  if (usarCapaManual) {
     const capaFile = formData.get("capa");
-    if (!capaFile) {
-      resultado.innerText = "❌ Nenhuma capa enviada.";
+    if (!capaFile || capaFile.size === 0) {
+      resultado.innerText = "❌ Arquivo de capa não enviado.";
       return;
     }
-    capaBase64 = await toBase64(capaFile);
-    capaBase64 = capaBase64.replace(/^data:image\/(jpeg|png);base64,/, "");
+    const capaBase64 = await toBase64(capaFile);
+    formData.append("capaBase64", capaBase64.replace(/^data:image\/(jpeg|png);base64,/, ""));
   } else {
-    capaBase64 = await extrairImagemDaPrimeiraPagina(pdfFile);
-    if (!capaBase64) {
-      resultado.innerText = "❌ Falha ao extrair imagem do PDF.";
-      return;
-    }
+    const capaBase64 = await extrairImagemDaPrimeiraPagina(pdfFile);
+    formData.append("capaBase64", capaBase64.replace(/^data:image\/jpeg;base64,/, ""));
   }
-
-  const dados = {
-    token: token,
-    acao: "cadastrar",
-    titulo: formData.get("titulo"),
-    autor: formData.get("autor"),
-    categoria: formData.get("categoria"),
-    descricao: formData.get("descricao"),
-    pdfBase64: pdfBase64.replace(/^data:application\/pdf;base64,/, ""),
-    capaBase64: capaBase64
-  };
 
   try {
     const resposta = await fetch("https://script.google.com/macros/s/AKfycbxzA2CP1baCmzCTfDq8oyjbkLYzMZ9qf4ibTeZ0gfbmuSgd6SYo-urjD2VB-i8GGCd3bw/exec", {
       method: "POST",
-      body: JSON.stringify(dados),
-      headers: {
-        "Content-Type": "application/json"
-      }
+      body: formData
     });
 
     const texto = await resposta.text();
     resultado.innerText = texto;
     form.reset();
-    campoCapa.style.display = "none";
-  } catch (erro) {
-    console.error(erro);
+    document.getElementById("campoCapa").style.display = "none";
+  } catch (err) {
+    console.error(err);
     resultado.innerText = "❌ Erro ao enviar livro.";
   }
 });
 
+// Utilitário: converter arquivo para base64
 function toBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result);
-    reader.onerror = e => reject(e);
+    reader.onerror = reject;
     reader.readAsDataURL(file);
   });
 }
 
+// Utilitário: extrair imagem da primeira página do PDF
 async function extrairImagemDaPrimeiraPagina(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = async function () {
-      try {
-        const typedarray = new Uint8Array(reader.result);
-        const pdf = await pdfjsLib.getDocument({ data: typedarray }).promise;
-        const page = await pdf.getPage(1);
-        const viewport = page.getViewport({ scale: 1.5 });
+  const data = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data }).promise;
+  const page = await pdf.getPage(1);
 
-        const canvas = document.createElement("canvas");
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
+  const scale = 2.5;
+  const viewport = page.getViewport({ scale });
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
 
-        const context = canvas.getContext("2d");
-        await page.render({ canvasContext: context, viewport }).promise;
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
 
-        const base64Image = canvas.toDataURL("image/jpeg").replace(/^data:image\/jpeg;base64,/, "");
-        resolve(base64Image);
-      } catch (err) {
-        console.error("Erro ao extrair imagem do PDF:", err);
-        resolve(null);
-      }
-    };
-    reader.readAsArrayBuffer(file);
-  });
+  await page.render({ canvasContext: context, viewport }).promise;
+  return canvas.toDataURL("image/jpeg");
 }
